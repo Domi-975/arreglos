@@ -88,81 +88,85 @@ const propiedades_alquiler = [
 // Función para renderizar propiedades en venta
 function renderizarPropiedadesVenta() {
     const ventaList = document.getElementById('venta-list');
-    const propiedadesMostrar = propiedades_venta.slice(0, 3); //
+    let html = ''; // Variable para almacenar el HTML
 
-        // Mostrar solo 3 propiedades
-        for (const prop of propiedadesMostrar) {
-            const template = `
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="${prop.src}" class="card-img-top" alt="${prop.nombre}" />
-                        <div class="card-body">
-                            <h5 class="card-title">${prop.nombre}</h5>
-                            <p class="card-text">${prop.descripcion}</p>
-                            <p><i class="fas fa-map-marker-alt"></i> ${prop.ubicacion}</p>
-                            <p><i class="fas fa-bed"></i> ${prop.habitaciones} Habitaciones</p>
-                            <p><i class="fas fa-dollar-sign"></i> ${prop.costo}</p>
-                            <p class="${prop.smoke ? 'text-success' : 'text-danger'}">
-                                <i class="${prop.smoke ? 'fas fa-smoking' : 'fas fa-smoking-ban'}"></i> 
-                                ${prop.smoke ? 'Permitido fumar' : 'No se permite fumar'}
-                            </p>
-                            <p class="${prop.pets ? 'text-success' : 'text-danger'}">
-                                <i class="${prop.pets ? 'fas fa-paw' : 'fas fa-ban'}"></i> 
-                                ${prop.pets ? 'Mascotas permitidas' : 'No se permiten mascotas'}
-                            </p>
-                        </div>
+    const propiedadesMostrar = propiedades_venta.slice(0, 4); // Muestra 4 propiedades
+
+    for (const prop of propiedadesMostrar) {
+        html += `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="${prop.src}" class="card-img-top" alt="${prop.nombre}" />
+                    <div class="card-body">
+                        <h5 class="card-title">${prop.nombre}</h5>
+                        <p class="card-text">${prop.descripcion}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${prop.ubicacion}</p>
+                        <p><i class="fas fa-bed"></i> ${prop.habitaciones} Habitaciones</p>
+                        <p><i class="fas fa-dollar-sign"></i> ${prop.costo}</p>
+                        <p class="${prop.smoke ? 'text-success' : 'text-danger'}">
+                            <i class="${prop.smoke ? 'fas fa-smoking' : 'fas fa-smoking-ban'}"></i> 
+                            ${prop.smoke ? 'Permitido fumar' : 'No se permite fumar'}
+                        </p>
+                        <p class="${prop.pets ? 'text-success' : 'text-danger'}">
+                            <i class="${prop.pets ? 'fas fa-paw' : 'fas fa-ban'}"></i> 
+                            ${prop.pets ? 'Mascotas permitidas' : 'No se permiten mascotas'}
+                        </p>
                     </div>
                 </div>
-            `;
-            ventaList.innerHTML += template;
-        }
+            </div>
+        `;
     }
-    
-    // Función para renderizar propiedades en alquiler
-    function renderizarPropiedadesAlquiler() {
-        const alquilerList = document.getElementById('alquiler-list');
-        const propiedadesMostrar = propiedades_alquiler.slice(0, 3); // Mostrar solo 3 propiedades
-    
-        for (const prop of propiedadesMostrar) {
-            const template = `
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="${prop.src}" class="card-img-top" alt="${prop.nombre}" />
-                        <div class="card-body">
-                            <h5 class="card-title">${prop.nombre}</h5>
-                            <p class="card-text">${prop.descripcion}</p>
-                            <p><i class="fas fa-map-marker-alt"></i> ${prop.ubicacion}</p>
-                            <p><i class="fas fa-bed"></i> ${prop.habitaciones} Habitaciones</p>
-                            <p><i class="fas fa-dollar-sign"></i> ${prop.costo}</p>
-                            <p class="${prop.smoke ? 'text-success' : 'text-danger'}">
-                                <i class="${prop.smoke ? 'fas fa-smoking' : 'fas fa-smoking-ban'}"></i> 
-                                ${prop.smoke ? 'Permitido fumar' : 'No se permite fumar'}
-                            </p>
-                            <p class="${prop.pets ? 'text-success' : 'text-danger'}">
-                                <i class="${prop.pets ? 'fas fa-paw' : 'fas fa-ban'}"></i> 
-                                ${prop.pets ? 'Mascotas permitidas' : 'No se permiten mascotas'}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            alquilerList.innerHTML += template;
-        }
-    }
-        // Verificar si estamos en la página de inicio
-        if (document.getElementById('venta-list') && document.getElementById('alquiler-list')) {
-         renderizarPropiedadesVenta();
-         renderizarPropiedadesAlquiler();
+
+    ventaList.innerHTML = html; // Asignar el HTML construido a innerHTML
 }
-   
-    
-        // Verificar si estamos en la página de propiedades en venta
-        if (document.getElementById('venta-list') && !document.getElementById('alquiler-list')) {
-            renderizarPropiedadesVenta();
-        }
-    
-        // Verificar si estamos en la página de propiedades en alquiler
-        if (document.getElementById('alquiler-list') && !document.getElementById('venta-list')) {
-            renderizarPropiedadesAlquiler();
-        }
-    ;
+
+// Función para renderizar propiedades en alquiler
+function renderizarPropiedadesAlquiler() {
+    const alquilerList = document.getElementById('alquiler-list');
+    let html = ''; // Variable para almacenar el HTML
+
+    const propiedadesMostrar = propiedades_alquiler.slice(0, 4); // Muestra 4 propiedades
+
+    for (const prop of propiedadesMostrar) {
+        html += `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="${prop.src}" class="card-img-top" alt="${prop.nombre}" />
+                    <div class="card-body">
+                        <h5 class="card-title">${prop.nombre}</h5>
+                        <p class="card-text">${prop.descripcion}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${prop.ubicacion}</p>
+                        <p><i class="fas fa-bed"></i> ${prop.habitaciones} Habitaciones</p>
+                        <p><i class="fas fa-dollar-sign"></i> ${prop.costo}</p>
+                        <p class="${prop.smoke ? 'text-success' : 'text-danger'}">
+                            <i class="${prop.smoke ? 'fas fa-smoking' : 'fas fa-smoking-ban'}"></i> 
+                            ${prop.smoke ? 'Permitido fumar' : 'No se permite fumar'}
+                        </p>
+                        <p class="${prop.pets ? 'text-success' : 'text-danger'}">
+                            <i class="${prop.pets ? 'fas fa-paw' : 'fas fa-ban'}"></i> 
+                            ${prop.pets ? 'Mascotas permitidas' : 'No se permiten mascotas'}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    alquilerList.innerHTML = html; // Asignar el HTML construido a innerHTML
+}
+
+// Verificar si estamos en la página de inicio
+if (document.getElementById('venta-list') && document.getElementById('alquiler-list')) {
+    renderizarPropiedadesVenta(3); // Muestra 3 propiedades en la página principal
+    renderizarPropiedadesAlquiler(3); // Muestra 3 propiedades en la página principal
+}
+
+// Verificar si estamos en la página de propiedades en venta
+if (document.getElementById('venta-list') && !document.getElementById('alquiler-list')) {
+    renderizarPropiedadesVenta(4); // Muestra 4 propiedades en la página de venta
+}
+
+// Verificar si estamos en la página de propiedades en alquiler
+if (document.getElementById('alquiler-list') && !document.getElementById('venta-list')) {
+    renderizarPropiedadesAlquiler(4); // Muestra 4 propiedades en la página de alquiler
+}
